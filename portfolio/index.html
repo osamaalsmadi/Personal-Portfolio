@@ -136,9 +136,12 @@
         <p>🔗 <a href="https://www.linkedin.com/in/osama-alsmadi-?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/osamaalsmadi?tab=repositories" target="_blank" rel="noopener">GitHub</a></p>
       </div>
       <form id="contactForm" class="card" novalidate>
-        <input type="text" id="fName" name="name" autocomplete="name" data-i18n-ph="f_name">
-        <input type="email" id="fEmail" name="email" autocomplete="email" data-i18n-ph="f_email">
-        <textarea id="fMsg" name="message" rows="5" data-i18n-ph="f_msg"></textarea>
+        <label for="fName" data-i18n="f_name">Name</label>
+        <input required type="text" id="fName" name="name" autocomplete="name" data-i18n-ph="f_name">
+        <label for="fEmail" data-i18n="f_email">Email</label>
+        <input required type="email" id="fEmail" name="email" autocomplete="email" data-i18n-ph="f_email">
+        <label for="fMsg" data-i18n="f_msg">Message</label>
+        <textarea required id="fMsg" name="message" rows="5" data-i18n-ph="f_msg"></textarea>
         <button type="submit" class="btn" data-i18n="f_send"></button>
         <p id="formMsg" class="form-msg" role="status"></p>
       </form>
