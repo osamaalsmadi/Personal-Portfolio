@@ -1,3 +1,10 @@
+function readPreference(key) {
+  try { return localStorage.getItem(key); } catch { return null; }
+}
+function writePreference(key, value) {
+  try { localStorage.setItem(key, value); } catch { /* Preferences are optional. */ }
+}
+
 const translations = {
   en: {
     nav_home: "Home",
@@ -158,14 +165,14 @@ function getAll(selector) {
 }
 
 var themes = ['cyber', 'violet', 'emerald', 'light'];
-var themeIndex = themes.indexOf(localStorage.getItem('theme'));
+var themeIndex = themes.indexOf(readPreference('theme'));
 if (themeIndex < 0) {
   themeIndex = 0;
 }
 
 function applyTheme() {
   document.body.setAttribute('data-theme', themes[themeIndex]);
-  localStorage.setItem('theme', themes[themeIndex]);
+  writePreference('theme', themes[themeIndex]);
 }
 
 function onThemeClick() {
@@ -178,10 +185,11 @@ function onThemeClick() {
 
 getEl('#themeBtn').addEventListener('click', onThemeClick);
 
-var lang = localStorage.getItem('lang') || 'en';
+var lang = readPreference('lang') || 'en';
 var avatarIndex = 0;
 
 function setLanguage(newLang) {
+  newLang = newLang === 'ar' ? 'ar' : 'en';
   lang = newLang;
   var dict = translations[newLang];
 
@@ -215,7 +223,7 @@ function setLanguage(newLang) {
     document.title = dict.hero_name + ' | Cybersecurity Portfolio';
   }
 
-  localStorage.setItem('lang', newLang);
+  writePreference('lang', newLang);
 }
 
 function onLangClick() {
@@ -279,11 +287,19 @@ function onBurgerClick(event) {
 function onMenuClick(event) {
   if (event.target.tagName === 'A') {
     menu.classList.remove('open');
+    getEl('#burger').setAttribute('aria-expanded', 'false');
   }
 }
 
 getEl('#burger').addEventListener('click', onBurgerClick);
 menu.addEventListener('click', onMenuClick);
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape' && menu.classList.contains('open')) {
+    menu.classList.remove('open');
+    getEl('#burger').setAttribute('aria-expanded', 'false');
+    getEl('#burger').focus();
+  }
+});
 
 var menuLinks = getAll('#menu a');
 
@@ -380,6 +396,7 @@ function openMailApp() {
 
 function onFormSubmit(event) {
   event.preventDefault();
+  if (contactForm.querySelector('button').disabled) return;
 
   var name = nameInput.value.trim();
   var email = emailInput.value.trim();
@@ -427,7 +444,7 @@ var blue = 255;
 var frameCount = 0;
 var linkDistance = 145;
 var mouseRange = 190;
-var netIsOn = localStorage.getItem('net') !== 'off';
+var netIsOn = readPreference('net') !== 'off';
 
 function makeColor(alpha) {
   return 'rgba(' + red + ',' + green + ',' + blue + ',' + alpha + ')';
@@ -685,7 +702,7 @@ if (netIsOn) {
 }
 
 var netBtn = getEl('#netBtn');
-var netOn = localStorage.getItem('net') !== 'off';
+var netOn = readPreference('net') !== 'off';
 
 function paintNetButton() {
   netBtn.setAttribute('aria-pressed', netOn);
@@ -695,9 +712,9 @@ function paintNetButton() {
 function onNetClick() {
   netOn = !netOn;
   if (netOn) {
-    localStorage.setItem('net', 'on');
+    writePreference('net', 'on');
   } else {
-    localStorage.setItem('net', 'off');
+    writePreference('net', 'off');
   }
   setNeural(netOn);
   paintNetButton();
