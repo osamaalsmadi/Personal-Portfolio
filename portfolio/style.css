@@ -689,3 +689,18 @@ html[lang=en] .tl .date {
     transition-duration: .01ms!important;
   }
 }
+
+/* Keep navigation controls and form content usable on narrow screens. */
+@media (max-width: 380px) {
+  .nav { gap: 6px; width: 96%; }
+  .logo { font-size: .9rem; }
+  .tools { gap: 3px; }
+}
+.contact > *, .about > * { min-width: 0; }
+.info a { overflow-wrap: anywhere; }
+textarea { resize: vertical; min-height: 140px; }
+button:disabled { cursor: wait; opacity: .65; }
+@media (max-width: 860px) {
+  #menu:not(.open) { visibility: hidden; }
+  #menu.open { visibility: visible; }
+}
