@@ -18,11 +18,16 @@ README.md      this file
 ## Features
 - Navbar with scroll-spy, mobile menu, theme switcher, language switcher, CV download, neural-background on/off
 - About Me with avatar selector (changes `img.src` and `img.alt` with a CSS fade transition)
-- Animated counters, experience/education timeline, skills grid, projects 00-03, hobbies
+- Animated counters, experience/education timeline, skills grid, projects 00-04, hobbies
 - Contact form (validation + Formspree or mail app), footer, back-to-top button
 - English / Arabic with automatic `lang` and `dir` (`ltr` / `rtl`); layout uses CSS logical properties so RTL never breaks
 - Interactive neural-network canvas background that reacts to the pointer
 - Accessibility: skip link, visible focus, ARIA states, reduced-motion support
+
+## Featured project: Hack Airport
+An educational team project simulating flight booking and three browser-only web security labs (IDOR, broken access control, coupon replay). Includes interactive 2D/3D cabin views and vulnerable/fixed comparisons. No real booking or payments are processed.
+- [Live demo](https://osamaalsmadi.github.io/osamaalsmadi/)
+- [Source code](https://github.com/osamaalsmadi/osamaalsmadi/tree/main/projects/hack-airport-lab)
 
 ## Event lifecycle (write this part in your own words)
 Every interactive feature follows the same four steps:
@@ -50,7 +55,7 @@ Example 3: Avatar selector
 |---|---|
 | Form delivery | `FORM_ENDPOINT` in `script.js`: uses FormSubmit (send one test message, then click "Activate" in the email you receive). Replace with a Formspree URL if you prefer |
 | Texts (EN / AR) | the `translations` object at the top of `script.js` |
-| Project screenshots | replace `assets/images/projects/p0.svg ... p3.svg` (or use PNG/JPG and update the `src` in `index.html`) |
+| Project screenshots | replace `assets/images/projects/p0.svg ... p4.svg` (or use PNG/JPG and update the `src` in `index.html`) |
 | Profile photos | `photos` array in `script.js` + `assets/images/` |
 | Colours of the themes | top of `style.css` |
 
